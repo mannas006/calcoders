@@ -1,21 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './App.tsx';
+import App from './App';
 import './index.css';
 
 // Pages
-import Home from './pages/Home.tsx';
-import About from './pages/About.tsx';
-import Classes from './pages/Classes.tsx';
-import Team from './pages/Team.tsx';
-import Partners from './pages/Partners.tsx';
-import Testimonials from './pages/Testimonials.tsx';
-import Contact from './pages/Contact.tsx';
-import Donate from './pages/Donate.tsx';
-import STEMNN from './pages/STEMNN.tsx';
-import Login from './pages/Login.tsx';
-import Register from './pages/Register.tsx';
+import Home from './pages/Home';
+import About from './pages/About';
+import Classes from './pages/Classes';
+import Team from './pages/Team';
+import Partners from './pages/Partners';
+import Testimonials from './pages/Testimonials';
+import Contact from './pages/Contact';
+import Donate from './pages/Donate';
+import STEMNN from './pages/STEMNN';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 const router = createBrowserRouter([
   {
