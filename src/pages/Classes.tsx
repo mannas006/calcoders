@@ -64,37 +64,22 @@ const Classes = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-4xl md:text-5xl font-bold text-center mb-12 font-poppins"
       >
-        Classes, Camps, & Events
+        Upcoming Events
       </motion.h1>
 
-      <p className="text-lg text-center mb-10 max-w-3xl mx-auto">
-        Discover our diverse range of programs designed to inspire and educate the next generation of tech leaders.
-        From immersive summer camps to engaging after-school clubs, there's something for every aspiring coder!
-      </p>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {events.map((event, index) => (
-          <EventCard key={index} {...event} />
-        ))}
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-        className="text-center mt-12"
-      >
-        <p className="text-xl font-semibold mb-4">
-          Stay tuned for more exciting events and new class offerings!
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto text-center">
+        <p className="text-lg mb-6">
+          We do not have any more upcoming events. If you would like to get notified about future camps, classes, and events, please sign up for our mailing list:
         </p>
         <a
-          href="/contact"
-          className="inline-block bg-accent-orange text-white-light px-8 py-3 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md"
+          href="https://forms.gle/D4eZhadswXipJrTW9"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-accent-orange text-white-light px-8 py-3 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md mb-4"
         >
-          Contact Us for More Info
+          Join Our Mailing List
         </a>
-      </motion.div>
+      </div>
     </div>
   );
 };

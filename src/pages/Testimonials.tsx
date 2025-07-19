@@ -9,38 +9,8 @@ interface Testimonial {
   image: string;
 }
 
-const testimonials: Testimonial[] = [
-  {
-    quote: "CalCoders transformed my son's understanding of programming. He went from being intimidated by code to building his own small games!",
-    name: 'Sarah M.',
-    title: 'Parent of a Student',
-    image: 'https://via.placeholder.com/80/1E3A8A/F9FAFB?text=SM',
-  },
-  {
-    quote: "The instructors are incredibly knowledgeable and patient. I learned so much in the web development camp, and now I feel confident pursuing a career in tech.",
-    name: 'Alex R.',
-    title: 'Former Student',
-    image: 'https://via.placeholder.com/80/F97316/F9FAFB?text=AR',
-  },
-  {
-    quote: "As a volunteer, I've seen firsthand the impact CalCoders has on young minds. It's inspiring to be part of an organization that truly makes a difference.",
-    name: 'Jessica L.',
-    title: 'Volunteer Instructor',
-    image: 'https://via.placeholder.com/80/1E3A8A/F9FAFB?text=JL',
-  },
-  {
-    quote: "The STEMNN program opened my eyes to computational neuroscience. It was challenging but incredibly rewarding, pushing me to think critically.",
-    name: 'Michael B.',
-    title: 'STEMNN Participant',
-    image: 'https://via.placeholder.com/80/F97316/F9FAFB?text=MB',
-  },
-  {
-    quote: "CalCoders provides an invaluable service to our community. Their commitment to accessible education is truly commendable.",
-    name: 'Mayor Thompson',
-    title: 'Community Leader',
-    image: 'https://via.placeholder.com/80/1E3A8A/F9FAFB?text=MT',
-  },
-];
+// No testimonials for now
+const testimonials: Testimonial[] = [];
 
 const TestimonialCard: React.FC<{ testimonial: Testimonial; index: number }> = ({ testimonial, index }) => {
   return (
@@ -82,9 +52,15 @@ const Testimonials = () => {
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {testimonials.map((testimonial, index) => (
-          <TestimonialCard key={index} testimonial={testimonial} index={index} />
-        ))}
+        {testimonials.length === 0 ? (
+          <div className="col-span-full text-center text-gray-500 text-lg py-12">
+            No testimonials available at this time.
+          </div>
+        ) : (
+          testimonials.map((testimonial, index) => (
+            <TestimonialCard key={index} testimonial={testimonial} index={index} />
+          ))
+        )}
       </div>
     </div>
   );

@@ -14,68 +14,8 @@ interface TeamMember {
   };
 }
 
-const teamMembers: TeamMember[] = [
-  {
-    name: 'Alice Johnson',
-    role: 'Founder & CEO',
-    bio: 'Passionate about empowering youth through technology. Over 15 years in software development and education.',
-    image: 'https://via.placeholder.com/150/1E3A8A/F9FAFB?text=Alice',
-    social: {
-      linkedin: '#',
-      github: '#',
-      email: 'alice@example.com',
-    },
-  },
-  {
-    name: 'Bob Williams',
-    role: 'Lead Instructor',
-    bio: 'Specializes in Python and web development. Loves making complex concepts easy to understand.',
-    image: 'https://via.placeholder.com/150/F97316/F9FAFB?text=Bob',
-    social: {
-      linkedin: '#',
-      github: '#',
-    },
-  },
-  {
-    name: 'Carol Davis',
-    role: 'Curriculum Developer',
-    bio: 'Designs engaging and effective coding curricula for all age groups. Background in educational psychology.',
-    image: 'https://via.placeholder.com/150/1E3A8A/F9FAFB?text=Carol',
-    social: {
-      linkedin: '#',
-      email: 'carol@example.com',
-    },
-  },
-  {
-    name: 'David Lee',
-    role: 'Operations Manager',
-    bio: 'Ensures smooth operations and manages logistics for all CalCoders programs and events.',
-    image: 'https://via.placeholder.com/150/F97316/F9FAFB?text=David',
-    social: {
-      linkedin: '#',
-    },
-  },
-  {
-    name: 'Eve Green',
-    role: 'Community Outreach',
-    bio: 'Connects CalCoders with local schools and community organizations to expand our reach.',
-    image: 'https://via.placeholder.com/150/1E3A8A/F9FAFB?text=Eve',
-    social: {
-      linkedin: '#',
-      email: 'eve@example.com',
-    },
-  },
-  {
-    name: 'Frank White',
-    role: 'Volunteer Coordinator',
-    bio: 'Manages our amazing team of volunteers and ensures they have a rewarding experience.',
-    image: 'https://via.placeholder.com/150/F97316/F9FAFB?text=Frank',
-    social: {
-      linkedin: '#',
-      github: '#',
-    },
-  },
-];
+// No team members for now
+const teamMembers: TeamMember[] = [];
 
 const TeamCard: React.FC<{ member: TeamMember; index: number }> = ({ member, index }) => {
   return (
@@ -133,9 +73,9 @@ const Team = () => {
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {teamMembers.map((member, index) => (
-          <TeamCard key={index} member={member} index={index} />
-        ))}
+        <div className="col-span-full text-center text-gray-500 text-2xl py-24">
+          Coming Soon
+        </div>
       </div>
     </div>
   );

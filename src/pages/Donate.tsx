@@ -29,28 +29,32 @@ const Donate = () => {
         <Heart size={80} className="text-accent-orange mx-auto mb-6" />
         <h2 className="text-3xl font-semibold mb-4 font-poppins">Make a Difference Today</h2>
         <p className="text-lg leading-relaxed mb-6">
-          Your generous contribution helps CalCoders continue to provide free and low-cost coding education
-          to students in our community. Every donation, big or small, directly supports our programs,
-          helps us acquire necessary resources, and allows us to reach more aspiring young coders.
+          You can donate to us via our fiscal sponsor, Hack Club, using this link:
+          <br />
+          <a
+            href="https://hcb.hackclub.com/donations/start/calcoders"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent-orange underline font-semibold"
+          >
+            https://hcb.hackclub.com/donations/start/calcoders
+          </a>
         </p>
         <p className="text-lg leading-relaxed mb-8">
-          Thank you for investing in the future of technology and empowering the next generation of innovators!
+          We rely on donors and sponsors for our financial needs. Your support of our organization is greatly appreciated.
         </p>
 
         <div className="space-y-4">
           <motion.a
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            href="https://www.paypal.com/donate/?hosted_button_id=YOUR_PAYPAL_BUTTON_ID" // Replace with actual PayPal link
+            href="https://hcb.hackclub.com/donations/start/calcoders"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block w-full sm:w-auto bg-accent-orange text-white-light px-8 py-4 rounded-lg font-semibold text-xl hover:bg-orange-600 transition-colors duration-300 shadow-md"
           >
-            Donate via PayPal
+            Donate via Hack Club
           </motion.a>
-          <p className="text-sm text-gray-600">
-            (Placeholder for external donation system. Please replace with your actual donation link.)
-          </p>
         </div>
       </motion.div>
     </div>

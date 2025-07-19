@@ -1,14 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const partners = [
-  { name: 'Tech Innovators Inc.', logo: 'https://via.placeholder.com/150/1E3A8A/F9FAFB?text=Partner+1' },
-  { name: 'Code Academy', logo: 'https://via.placeholder.com/150/F97316/F9FAFB?text=Partner+2' },
-  { name: 'Future Coders Foundation', logo: 'https://via.placeholder.com/150/1E3A8A/F9FAFB?text=Partner+3' },
-  { name: 'Silicon Valley EdTech', logo: 'https://via.placeholder.com/150/F97316/F9FAFB?text=Partner+4' },
-  { name: 'Community STEM Hub', logo: 'https://via.placeholder.com/150/1E3A8A/F9FAFB?text=Partner+5' },
-  { name: 'Global Robotics League', logo: 'https://via.placeholder.com/150/F97316/F9FAFB?text=Partner+6' },
-];
+// No partners for now
+const partners: any[] = [];
 
 const Partners = () => {
   return (
@@ -29,19 +23,9 @@ const Partners = () => {
       </p>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
-        {partners.map((partner, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-            className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center h-48 w-48 hover:shadow-xl transition-shadow duration-300"
-          >
-            <img src={partner.logo} alt={partner.name} className="max-h-24 max-w-full object-contain mb-4" />
-            <p className="text-center font-semibold text-lg">{partner.name}</p>
-          </motion.div>
-        ))}
+        <div className="col-span-full text-center text-gray-500 text-2xl py-24">
+          Coming Soon
+        </div>
       </div>
 
       <motion.div

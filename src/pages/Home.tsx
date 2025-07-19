@@ -32,7 +32,12 @@ const Home = () => {
           className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto"
         >
           CalCoders is a registered nonprofit organization based in Fremont, California.
-          Our mission is to provide accessible and engaging coding education to students of all backgrounds.
+          <br />
+          <br />
+          We conduct both in person and virtual events, camps, classes, and more that engage people in coding, STEM and technology.
+          <br />
+          <br />
+          Our mission is to spread technology, STEM, and coding to everyone, while allowing them to use their talents to use what they have learned to make a difference for others and for the world.
         </motion.p>
         <motion.div
           variants={buttonVariants}
