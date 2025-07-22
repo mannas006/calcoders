@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import App from './App';
 import './index.css';
-
-// Pages
 import Home from './pages/Home';
 import About from './pages/About';
 import Classes from './pages/Classes';
@@ -16,6 +15,21 @@ import Donate from './pages/Donate';
 import STEMNN from './pages/STEMNN';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import React from 'react';
+
+
+// Route guard for dashboard
+const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user, loading } = useAuth();
+  if (loading) return <div className="flex justify-center items-center h-screen">Loading...</div>;
+  if (!user) {
+    window.location.href = '/login';
+    return null;
+  }
+  return <>{children}</>;
+};
 
 const router = createBrowserRouter([
   {
@@ -33,12 +47,15 @@ const router = createBrowserRouter([
       { path: 'stemnn', element: <STEMNN /> },
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Register /> },
+      { path: 'dashboard', element: <PrivateRoute><Dashboard /></PrivateRoute> },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 );

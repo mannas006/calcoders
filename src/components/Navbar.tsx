@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useAuth } from '../context/AuthContext';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
+  const handleLogout = async () => {
+    await logout();
+    toast.success('Logged out successfully');
+    navigate('/login');
+  };
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
@@ -30,22 +39,34 @@ const Navbar = () => {
           CalCoders
         </Link>
 
-        <div className="hidden md:flex space-x-6 items-center"> {/* Added items-center for explicit alignment */}
+        <div className="hidden md:flex space-x-6 items-center">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
-              className="hover:text-accent-orange transition-colors duration-300 py-2" // Added py-2 here
+              className="hover:text-accent-orange transition-colors duration-300 py-2"
             >
               {link.name}
             </Link>
           ))}
-          <Link
-            to="/login"
-            className="bg-accent-orange px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300"
-          >
-            Login
-          </Link>
+          {user && user.emailVerified ? (
+            <div className="relative group">
+              <button className="flex items-center space-x-2 px-4 py-2 rounded-md bg-gray-700 text-white-light font-semibold focus:outline-none">
+                <span>Hi, {user.displayName || user.email?.split('@')[0]}</span>
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </button>
+              <div className="absolute right-0 mt-2 w-32 bg-white text-gray-800 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+                <button onClick={handleLogout} className="block w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+              </div>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="bg-accent-orange px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300"
+            >
+              Login
+            </Link>
+          )}
         </div>
 
         <div className="md:hidden">
@@ -73,13 +94,22 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Link
-              to="/login"
-              className="bg-accent-orange px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300"
-              onClick={() => setIsOpen(false)}
-            >
-              Login
-            </Link>
+            {user && user.emailVerified ? (
+              <button
+                onClick={() => { setIsOpen(false); handleLogout(); }}
+                className="bg-accent-orange px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300 w-full text-left"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                className="bg-accent-orange px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300"
+                onClick={() => setIsOpen(false)}
+              >
+                Login
+              </Link>
+            )}
           </div>
         </motion.div>
       )}

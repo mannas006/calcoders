@@ -2,9 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from 'firebase/auth';
+import { getFirestore, doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import app, { auth } from '../firebase';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Register = () => {
+  const navigate = useNavigate();
   const formVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
@@ -31,15 +36,41 @@ const Register = () => {
         .oneOf([Yup.ref('password')], 'Passwords must match')
         .required('Required'),
     }),
-    onSubmit: (values) => {
-      console.log('Register attempt:', values);
-      alert('Registration functionality is UI-only for now. No backend integration.');
-      // In a real app, you'd send these credentials to your backend/Firebase Auth
+    onSubmit: async (values, { setSubmitting, setStatus }) => {
+      setStatus(undefined);
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
+        await updateProfile(userCredential.user, { displayName: values.name });
+        // Store user data in Firestore
+        const db = getFirestore(app);
+        await setDoc(doc(db, "users", userCredential.user.uid), {
+          uid: userCredential.user.uid,
+          name: values.name,
+          email: values.email,
+          createdAt: serverTimestamp(),
+        });
+        await sendEmailVerification(userCredential.user);
+        toast.success('Verification email sent. Please check your inbox and verify your email.');
+        formik.resetForm();
+        // User remains logged in; optionally, you can redirect to home or dashboard if desired:
+        // navigate('/');
+      } catch (error: any) {
+        if (error.code === 'auth/email-already-in-use') {
+          toast.error('This email is already registered. Please use a different email or login.');
+          setStatus('This email is already registered. Please use a different email or login.');
+        } else {
+          toast.error(error.message || 'Registration failed.');
+          setStatus(error.message || 'Registration failed.');
+        }
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 
   return (
     <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-white-light text-deep-blue">
+      <Toaster position="top-center" />
       <motion.div
         variants={formVariants}
         initial="hidden"
@@ -104,9 +135,20 @@ const Register = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
-            className="w-full bg-accent-orange text-white-light py-3 rounded-md font-semibold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md"
+            className={`w-full bg-accent-orange text-white-light py-3 rounded-md font-semibold text-lg transition-colors duration-300 shadow-md flex items-center justify-center ${formik.isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-orange-600'}`}
+            disabled={formik.isSubmitting}
           >
-            Register
+            {formik.isSubmitting ? (
+              <span className="flex items-center">
+                <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
+                Processing...
+              </span>
+            ) : (
+              'Register'
+            )}
           </motion.button>
         </form>
         <p className="mt-6 text-center text-gray-600">

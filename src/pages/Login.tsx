@@ -2,9 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
+  const navigate = useNavigate();
   const formVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
@@ -23,15 +27,29 @@ const Login = () => {
         .min(6, 'Password must be at least 6 characters')
         .required('Required'),
     }),
-    onSubmit: (values) => {
-      console.log('Login attempt:', values);
-      alert('Login functionality is UI-only for now. No backend integration.');
-      // In a real app, you'd send these credentials to your backend/Firebase Auth
+    onSubmit: async (values, { setSubmitting, setStatus }) => {
+      setStatus(undefined);
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, values.email, values.password);
+        if (!userCredential.user.emailVerified) {
+          toast.error('Please verify your email before logging in.');
+          setStatus('Please verify your email before logging in.');
+          return;
+        }
+        toast.success('Login successful! Redirecting...');
+        setTimeout(() => navigate('/'), 1200);
+      } catch (error: any) {
+        toast.error(error.message || 'Login failed.');
+        setStatus(error.message || 'Login failed.');
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 
   return (
     <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-white-light text-deep-blue">
+      <Toaster position="top-center" />
       <motion.div
         variants={formVariants}
         initial="hidden"
@@ -70,9 +88,20 @@ const Login = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
-            className="w-full bg-accent-orange text-white-light py-3 rounded-md font-semibold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md"
+            className={`w-full bg-accent-orange text-white-light py-3 rounded-md font-semibold text-lg transition-colors duration-300 shadow-md flex items-center justify-center ${formik.isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-orange-600'}`}
+            disabled={formik.isSubmitting}
           >
-            Login
+            {formik.isSubmitting ? (
+              <span className="flex items-center">
+                <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
+                Logging in...
+              </span>
+            ) : (
+              'Login'
+            )}
           </motion.button>
         </form>
         <p className="mt-6 text-center text-gray-600">
