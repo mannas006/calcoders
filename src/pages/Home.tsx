@@ -14,13 +14,13 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-white-light text-deep-blue overflow-hidden">
-      <div className="container mx-auto px-4 py-16 text-center">
+    <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-white-light text-deep-blue overflow-hidden px-2 sm:px-4">
+      <div className="container mx-auto px-0 sm:px-4 py-10 sm:py-16 text-center">
         <motion.h1
           variants={textVariants}
           initial="hidden"
           animate="visible"
-          className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight font-poppins"
+          className="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-4 sm:mb-6 leading-tight font-poppins"
         >
           Empowering the Next Generation of Coders
         </motion.h1>
@@ -29,7 +29,7 @@ const Home = () => {
           initial="hidden"
           animate="visible"
           transition={{ ...textVariants.visible.transition, delay: 0.2 }}
-          className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto"
+          className="text-base sm:text-xl md:text-2xl mb-6 sm:mb-8 max-w-3xl mx-auto"
         >
           CalCoders is a registered nonprofit organization based in Fremont, California.
           <br />
@@ -43,7 +43,7 @@ const Home = () => {
           variants={buttonVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-col sm:flex-row justify-center gap-4"
+          className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4"
         >
           <Button to="/contact" variant="primary">
             Join Our Team Today

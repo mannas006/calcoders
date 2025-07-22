@@ -4,9 +4,9 @@ import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-deep-blue text-white-light py-8 mt-12">
-      <div className="container mx-auto px-4 text-center">
-        <div className="flex justify-center space-x-6 mb-6">
+    <footer className="bg-deep-blue text-white-light py-6 sm:py-8 mt-8 sm:mt-12 text-center">
+      <div className="container mx-auto px-2 sm:px-4">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-4 sm:mb-6">
           <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-accent-orange transition-colors duration-300">
             <Facebook size={24} />
           </a>
@@ -20,8 +20,8 @@ const Footer = () => {
             <Linkedin size={24} />
           </a>
         </div>
-        <div className="mb-4">
-          <ul className="flex flex-wrap justify-center space-x-4 md:space-x-8">
+        <div className="mb-2 sm:mb-4">
+          <ul className="flex flex-wrap justify-center gap-2 sm:gap-4 md:gap-8">
             <li><Link to="/about" className="hover:text-accent-orange transition-colors duration-300">About Us</Link></li>
             <li><Link to="/classes" className="hover:text-accent-orange transition-colors duration-300">Classes</Link></li>
             <li><Link to="/team" className="hover:text-accent-orange transition-colors duration-300">Team</Link></li>
@@ -29,7 +29,7 @@ const Footer = () => {
             <li><Link to="/donate" className="hover:text-accent-orange transition-colors duration-300">Donate</Link></li>
           </ul>
         </div>
-        <p className="text-sm">&copy; {new Date().getFullYear()} CalCoders. All rights reserved.</p>
+        <p className="text-xs sm:text-sm">&copy; {new Date().getFullYear()} CalCoders. All rights reserved.</p>
       </div>
     </footer>
   );

@@ -34,12 +34,12 @@ const Navbar = () => {
       transition={{ type: "spring", stiffness: 120, damping: 14 }}
       className="bg-deep-blue text-white-light p-4 shadow-lg sticky top-0 z-50"
     >
-      <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold font-poppins">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-2 md:gap-0 px-2 sm:px-4">
+        <Link to="/" className="text-xl sm:text-2xl font-bold font-poppins mb-2 md:mb-0">
           CalCoders
         </Link>
 
-        <div className="hidden md:flex space-x-6 items-center">
+        <div className="hidden md:flex flex-wrap space-x-2 sm:space-x-6 items-center">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -81,14 +81,14 @@ const Navbar = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="md:hidden bg-deep-blue mt-2 pb-4"
+          className="md:hidden bg-deep-blue mt-2 pb-4 px-2"
         >
-          <div className="flex flex-col items-center space-y-4">
+          <div className="flex flex-col items-center space-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className="block hover:text-accent-orange transition-colors duration-300 py-2" // Added py-2 here for mobile menu
+                className="block hover:text-accent-orange transition-colors duration-300 py-2 text-base"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
@@ -97,14 +97,14 @@ const Navbar = () => {
             {user && user.emailVerified ? (
               <button
                 onClick={() => { setIsOpen(false); handleLogout(); }}
-                className="bg-accent-orange px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300 w-full text-left"
+                className="bg-accent-orange px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300 w-full text-left text-base"
               >
                 Logout
               </button>
             ) : (
               <Link
                 to="/login"
-                className="bg-accent-orange px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300"
+                className="bg-accent-orange px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300 text-base"
                 onClick={() => setIsOpen(false)}
               >
                 Login
