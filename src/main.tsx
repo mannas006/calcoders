@@ -17,7 +17,6 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import { AuthProvider, useAuth } from './context/AuthContext';
-import React from 'react';
 
 
 // Route guard for dashboard
