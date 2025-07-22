@@ -51,12 +51,12 @@ const Contact = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12 text-deep-blue">
+    <div className="container mx-auto px-2 sm:px-4 py-8 sm:py-12 text-deep-blue">
       <motion.h1
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="text-4xl md:text-5xl font-bold text-center mb-12 font-poppins"
+        className="text-2xl sm:text-4xl md:text-5xl font-bold text-center mb-6 sm:mb-12 font-poppins"
       >
         Contact Us
       </motion.h1>
@@ -66,10 +66,10 @@ const Contact = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg text-center"
+        className="max-w-2xl mx-auto bg-white p-4 sm:p-8 rounded-lg shadow-lg text-center"
       >
-        <h2 className="text-3xl font-semibold mb-6 text-accent-orange font-poppins">Contact Us</h2>
-        <p className="text-lg mb-8">
+        <h2 className="text-xl sm:text-3xl font-semibold mb-4 sm:mb-6 text-accent-orange font-poppins">Contact Us</h2>
+        <p className="text-base sm:text-lg mb-6 sm:mb-8">
           To contact us, you can email us at:
           <br />
           <span className="font-semibold">calcoders@gmail.com</span>
@@ -81,11 +81,11 @@ const Contact = () => {
           Check us out on social media by clicking one of the buttons below:
         </p>
         {/* Social media buttons placeholder */}
-        <div className="flex justify-center gap-6 mt-6">
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 mt-4 sm:mt-6 w-full">
           {/* Example social media buttons, replace # with actual links */}
-          <a href="#" className="bg-accent-orange text-white-light px-6 py-3 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md">Instagram</a>
-          <a href="#" className="bg-accent-orange text-white-light px-6 py-3 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md">Facebook</a>
-          <a href="#" className="bg-accent-orange text-white-light px-6 py-3 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md">LinkedIn</a>
+          <a href="#" className="bg-accent-orange text-white-light px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold text-base sm:text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md w-full sm:w-auto">Instagram</a>
+          <a href="#" className="bg-accent-orange text-white-light px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold text-base sm:text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md w-full sm:w-auto">Facebook</a>
+          <a href="#" className="bg-accent-orange text-white-light px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold text-base sm:text-lg hover:bg-orange-600 transition-colors duration-300 shadow-md w-full sm:w-auto">LinkedIn</a>
         </div>
       </motion.div>
     </div>
