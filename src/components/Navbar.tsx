@@ -35,8 +35,9 @@ const Navbar = () => {
       className="bg-deep-blue text-white-light p-4 shadow-lg sticky top-0 z-50"
     >
       <div className="container mx-auto flex flex-row justify-between items-center px-2 sm:px-4">
-        <Link to="/" className="text-xl sm:text-2xl font-bold font-poppins">
-          CalCoders
+        <Link to="/" className="flex items-center gap-2">
+          <img src="/logo.png" alt="CalCoders Logo" className="h-8 w-8" />
+          <span className="text-xl sm:text-2xl font-bold font-poppins">CalCoders</span>
         </Link>
         <div className="flex items-center">
           <div className="hidden md:flex flex-wrap space-x-2 sm:space-x-6 items-center">
