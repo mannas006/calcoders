@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Lightbulb, Users, GraduationCap } from 'lucide-react';
+import { Target, Heart, Rocket } from 'lucide-react';
 
 const About = () => {
   const sectionVariants = {
